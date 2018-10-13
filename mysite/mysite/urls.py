@@ -16,6 +16,21 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
+# import views from apps
+from home import views as home_views
+from accounts import views as accounts_views
+from events import views as events_views
+
 urlpatterns = [
+    # Django admin
     url(r'^admin/', admin.site.urls),
+
+    # Home app
+    url(r'^$', home_views.home, name="home"),
+
+    # Accounts app
+    url(r'^signup/$', accounts_views.signup, name="signup"),
+
+    # Events app
+    url(r'^create/$', events_views.create, name="create"),
 ]
