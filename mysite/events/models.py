@@ -10,3 +10,4 @@ class Event(models.Model):
     users = models.ManyToManyField(User)
     end_datetime = models.DateTimeField()
     free_times = models.ManyToManyField(FreeTime)
+    count = models.IntegerField()
