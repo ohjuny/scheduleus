@@ -5,5 +5,21 @@
 {% endblock %}
 
 {% block content %}
-create event page
+<form method="post" novalidate>
+    {% csrf_token %}
+    {{ form.all.errors }}
+    <div class="form-group">
+        <label>Event name</label>
+        {{ form.name }} {{ form.name.errors }}
+    </div>
+    <div class="form-group">
+        <label>End Time</label>
+        {{ form.end_datetime}} {{ form.end_datetime.errors }}
+    </div>
+    <div class="form-group">
+        <label>Users</label>
+    </div>
+    <br>
+    <button type="submit" class="btn btn-primary">Create Event</button>
+</form>
 {% endblock %}

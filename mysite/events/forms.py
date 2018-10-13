@@ -1,28 +1,19 @@
 from django import forms
+from django.utils import timezone
 
-from .models import Profile
+from .models import *
 
 # Form for a user to sign up.
-class UserForm(UserCreationForm):
+class EventForm(forms.ModelForm):
     # Sets placeholders for specified fields.
     def __init__(self, *args, **kwargs):
-        super(UserForm, self).__init__(*args, **kwargs)
-        self.fields['phone_number'].widget.attrs['placeholder'] = 'eg. +1 111 111 1111'
+        super(EventForm, self).__init__(*args, **kwargs)
+        # Important because dates have been defined to be parsed only in this format.
+        self.fields['end_datetime'].widget.attrs['placeholder'] = 'MM/DD/YY HH:MM'
 
-    phone_number = PhoneNumberField()
-    
-    # Overrides Django's default save method because I need to account for extended User model.
-    def save(self):
-        user = super(UserForm, self).save()
-        profile = Profile(
-            user = user,
-            phone_number = self.cleaned_data['phone_number'],
-        )
-        profile.save()
-
-        return user, profile
-
+    name = forms.CharField(max_length=50)
+    end_datetime = forms.DateTimeField(input_formats=['%m/%d/%y %H:%M'])
 
     class Meta:
-        model = User
-        fields = ['username', 'password1', 'password2', 'phone_number']
+        model = Event
+        fields = ['name', 'end_datetime']
