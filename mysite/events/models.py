@@ -5,9 +5,13 @@ from accounts.models import *
 class FreeTime(models.Model):
     start_datetime = models.DateTimeField()
     end_datetime = models.DateTimeField()
-    
+
 class Event(models.Model):
-    users = models.ManyToManyField(User)
+    name = models.CharField(max_length=50, default="default_name")
+    users = models.ManyToManyField(User, blank=True)
     end_datetime = models.DateTimeField()
     free_times = models.ManyToManyField(FreeTime)
     count = models.IntegerField()
+
+    def __str__(self):
+        return self.name

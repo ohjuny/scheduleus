@@ -36,4 +36,6 @@ urlpatterns = [
 
     # Events app
     url(r'^create/$', events_views.create, name="create"),
+    url(r'^events/$', events_views.events, name="events"),
+    url(r'^event/(?P<eventID>.+)/$', events_views.event, name="event"),
 ]
