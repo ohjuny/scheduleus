@@ -14,9 +14,9 @@
 </head>
 
 <body>
-    <a href="">home</a><br>
-    <a href="">sign up</a><br>
-    <a href="">event</a><br>
+    <a href="{% url 'home' %}">home</a><br>
+    <a href="{% url 'signup' %}">sign up</a><br>
+    <a href="{% url 'create' %}">create event</a><br>
     <br>
     {% block content %}
     {% endblock %}
