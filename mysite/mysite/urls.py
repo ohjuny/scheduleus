@@ -30,6 +30,7 @@ urlpatterns = [
 
     # Accounts app
     url(r'^signup/$', accounts_views.signup, name="signup"),
+    url(r'^login/$', accounts_views.login, name="login"),
 
     # Events app
     url(r'^create/$', events_views.create, name="create"),
