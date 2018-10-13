@@ -1,0 +1,5 @@
+client id:
+760648586169-fa7agbekt79pgkrgrcgpt55o1uh38mg3.apps.googleusercontent.com
+
+client secret:
+qFQoZjfq97GU6wJjX6meweeX
