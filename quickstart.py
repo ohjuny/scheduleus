@@ -3,9 +3,10 @@ import datetime
 from googleapiclient.discovery import build
 from httplib2 import Http
 from oauth2client import file, client, tools
+import os
 
 # If modifying these scopes, delete the file token.json.
-SCOPES = 'https://www.googleapis.com/auth/calendar.readonly'
+SCOPES = 'https://www.googleapis.com/auth/calendar'
 
 def main():
     """Shows basic usage of the Google Calendar API.
@@ -31,6 +32,9 @@ def main():
     for event in events:
         start = event['start'].get('dateTime', event['start'].get('date'))
         print(start, event['summary'])
+
+    if os.path.exists("token.json"):
+        os.remove("token.json")
 
 if __name__ == '__main__':
     main()
