@@ -5,5 +5,26 @@
 {% endblock %}
 
 {% block content %}
-sign up
+<form method="post">
+    {% csrf_token %}
+    <div class="form-group">
+        <label>Username</label>
+        {{ form.username }} {{ form.username.errors }}
+    </div>
+    <div class="form-group">
+            <label>Phone Number</label>
+            {{ form.phone_number }} {{ form.phone_number.errors }}
+        </div>
+    <div class="form-group">
+        <label>Password</label>
+        {{ form.password1 }} {{ form.password1.errors }}
+    </div>
+    <div class="form-group">
+        <label>Re-enter Password</label>
+        {{ form.password2 }} {{ form.password2.errors }}
+    </div>
+    <div class="text-center">
+        <button type="submit" class="btn btn-primary">Create an account</button>
+    </div>
+</form>
 {% endblock %}

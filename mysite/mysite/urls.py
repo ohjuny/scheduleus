@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
 
 # import views from apps
 from home import views as home_views
@@ -30,7 +31,8 @@ urlpatterns = [
 
     # Accounts app
     url(r'^signup/$', accounts_views.signup, name="signup"),
-    url(r'^login/$', accounts_views.login, name="login"),
+    url(r'^login/$', auth_views.LoginView.as_view(template_name='login.html'), name="login"),
+    url(r'^logout/$', auth_views.LogoutView.as_view(), name='logout'),
 
     # Events app
     url(r'^create/$', events_views.create, name="create"),

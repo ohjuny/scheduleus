@@ -5,5 +5,18 @@
 {% endblock %}
 
 {% block content %}
-log in
+<form method="post" novalidate>
+    {% csrf_token %}
+    {{ form.all.errors }}
+    <div class="form-group">
+        <label>Username</label>
+        {{ form.username }} {{ form.username.errors }}
+    </div>
+    <div class="form-group">
+        <label>Password</label>
+        {{ form.password}} {{ form.password.errors }}
+    </div>
+    <br>
+    <button type="submit" class="btn btn-primary">Log In</button>
+</form>
 {% endblock %}
