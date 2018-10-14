@@ -1,0 +1,58 @@
+#sidebar {
+    height: 100%;
+    /* top, right, bottom, left */
+    padding-top: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
+    /* background-color: #ff0000; */
+    border-right: 1px solid #e5e5e5;
+}
+
+#content {
+    /* top, right, bottom, left */
+    padding-top: 30px;
+    padding-left: 20px;
+    /* background-color: #ff0000; */
+}
+
+#name {
+    font-size: 30px;
+    /* text-align: center; */
+}
+
+/* #main {
+}
+
+#foot {
+} */
+
+
+#name a:link {
+    color: #2d7cf6;
+}
+#name a:visited {
+    color: #2d7cf6;
+}
+#name a:hover {
+    color: #2d7cf6;
+}
+
+#main a:link {
+    color: #555555;
+}
+#main a:visited {
+    color: #555555;
+}
+#main a:hover {
+    color: #555555;
+}
+
+#foot a:link {
+    color: #c5c5c5;
+}
+#foot a:visited {
+    color: #c5c5c5;
+}
+#foot a:hover {
+    color: #c5c5c5;
+}

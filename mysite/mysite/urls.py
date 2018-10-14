@@ -17,6 +17,9 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 
+from django.conf import settings
+from django.conf.urls.static import static
+
 # import views from apps
 from home import views as home_views
 from accounts import views as accounts_views
@@ -40,4 +43,4 @@ urlpatterns = [
     url(r'^event/(?P<eventID>.+)/$', events_views.event, name="event"),
 
     url(r'^ajax/search_users/$', events_views.search_users, name='search_users'),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
