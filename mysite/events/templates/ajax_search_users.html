@@ -4,7 +4,7 @@
     <b>Users Found:</b><br>
     {% for user in users %}
         {{ user.username }}
-        <input type="submit" id="user_{{user.id}}" value="Add">
+        <input type="submit" id="add_user" value="Add">
     {% endfor %}
 {% else %}
     No users match the search
