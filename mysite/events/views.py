@@ -44,8 +44,15 @@ def event(request, eventID):
             event = Event.objects.get(id=eventID)
         except:
             return render(request, "no_event.html")
+        
+        timeslots = []
+        for user in event.verified.all():
+            for timeslot in TimeSlot.objects.filter(profile=user.profile):
+                timeslots.append(timeslot)
+                
         return render(request, "event.html", {
             "event": event,
+            "timeslots": timeslots,
         })
 
 def events(request):

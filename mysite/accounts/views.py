@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+import dateutil.parser as p
 
 from .forms import *
 from .models import *
@@ -18,8 +19,10 @@ def signup(request):
             user.profile.save()
 
             arr = quickstart.main()
+            print(arr)
             for obj in arr:
-                newTimeSlot = TimeSlot(id=None, profile=user.profile, datetime=obj)
+                newTimeSlot = TimeSlot(profile=user.profile, datetime=p.parse(obj))
+                newTimeSlot.save()
 
             login(request, user)
             return render(request, "home.html")
