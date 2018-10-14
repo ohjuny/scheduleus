@@ -6,6 +6,9 @@
 
 {% block content %}
 <h2>Welcome to ScheduleUs</h2><br>
-(Some description of what this app does)<br>
-(Maybe some cool photos to demonstrate)
+Finding a time that works for everyone is tough. ScheduleUs makes this a worry of the past.
+{% if not user.is_authenticated %}
+<br><br>
+<--- Make an account now to get started!
+{% endif %}
 {% endblock %}
