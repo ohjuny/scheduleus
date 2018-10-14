@@ -14,13 +14,13 @@ TWILIO_NUMBER = os.environ['TWILIO_NUMBER']
 
 # from mysite import mysite as ms
 
-def send_msg(from_user, to_phone_number, event_name, maxtime): #string, datetime
+def send_msg(from_user, to_phone_number, event_name, event_id, maxtime): #string, datetime
     client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
 
     rv = client.messages.create(
         to="+" + to_phone_number,
         from_=TWILIO_NUMBER,
         body="User " + from_user + " requests to add you to the event: [" +
-                event_name + "], do you wish to accept? Text YES or NO"
+                event_name + "], do you wish to accept? Text [YES/NO] " + str(event_id)
     )
     print(rv)

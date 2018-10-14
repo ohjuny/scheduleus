@@ -32,10 +32,14 @@ def event(request, eventID):
         event.users.add(user)
         event.save()
 
-        send_msg(user.get_username(),
+        send_msg(request.user.username,
                     str(user.profile.phone_number),
                     event.name,
+                    event.id,
                     event.end_datetime)
+
+
+
         return HttpResponseRedirect(reverse("event", kwargs={'eventID': event.id}))
     else:
         try:
