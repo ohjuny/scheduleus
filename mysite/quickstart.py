@@ -33,34 +33,11 @@ def main(): #maxtime):
     for event in events:
         start = event['start'].get('dateTime')
         end = event['end'].get('dateTime')
-        #
-        # print(event['summary'], "test", start, end)
-        #
-        # starttemp = str(start).split('T')
-        # endtemp = str(end).split('T')
-        #
-        # wholeDay = len(starttemp)
-        # startdate = starttemp[0]
-        # enddate = endtemp[0]
-        #
-        # starttime = ''
-        # starttimef = ''
-        # endtime = ''
-        # endtimef = ''
-        # if(wholeDay-1):
-        #     starttime = starttemp[1].split(':')
-        #     starttimef = starttime[0]+':'+starttime[1]
-        #
-        #     endtime = endtemp[1].split(':')
-        #     endtimef = endtime[0] +':'+endtime[1]
-        # else:
-        #     startdate = str(start)
-        #     enddate = str(end)
-        #
-        # listOfDateTimes.append(startdate + ' ' + starttimef)
-        # listOfDateTimes.append(enddate + ' ' + endtimef)
-    listOfDateTimes.append(start)
-    listOfDateTimes.append(end)
+    
+
+        if (start is not None):
+            listOfDateTimes.append(start)
+            listOfDateTimes.append(end)
 
 
     if os.path.exists("token.json"):

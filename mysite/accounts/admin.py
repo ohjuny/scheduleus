@@ -3,4 +3,5 @@ from .models import *
 
 # Register your models here.
 
+admin.site.register(TimeSlot)
 admin.site.register(Profile)

@@ -7,6 +7,9 @@ class TimeSlot(models.Model):
     profile = models.ForeignKey('Profile', on_delete=models.CASCADE)
     datetime = models.DateTimeField()
 
+    def __str__(self):
+        return str(self.datetime)
+
 # Extending Django's default User model by having a OneToOneField with User table.
 class Profile(models.Model):
     user = models.OneToOneField(User, related_name="profile", on_delete=models.CASCADE)

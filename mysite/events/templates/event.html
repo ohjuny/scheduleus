@@ -10,8 +10,6 @@
   }
 </style>
 
-<script src="/vis-4.21.0/dist/vis.js"></script>
-<link href="/vis-4.21.0/dist/vis.css" rel="stylesheet" type="text/css" />
 {% endblock %}
 
 {% block content %}
@@ -27,12 +25,12 @@
 <br>
 {% endfor %}<br>
 
+<div id="visualization"></div><br>
+
 Add users:
 <input type="text" id="search" placeholder="Search users">
 <br><div id="search_results"></div>
 
-<!-- <input type="button" id="asdf" value="Add"> -->
-<div id="visualization"></div>
 {% endblock %}
 
 {% block javascript %}
@@ -53,28 +51,37 @@ Add users:
         });
     });
 
-  // DOM element where the Timeline will be attached
-  var container = document.getElementById('visualization');
+    // DOM element where the Timeline will be attached
+    var container = document.getElementById('visualization');
+    var timeslots = "{{ timeslots }}";
 
-  var preItems = [
-    {id: 1, content: 'item 1', start: '2013-04-20 12:00', end: '2013-04-20 20:00'},
-    {id: 2, content: 'item 2', start: '2013-04-14 08:00', end: '2013-04-14 09:00'},
-    {id: 3, content: 'item 3', start: '2013-04-20 12:00', end: '2013-04-20 20:30'},
-    {id: 4, content: 'item 4', start: '2013-04-20 12:00', end: '2013-04-20 20:30'},
-    {id: 5, content: 'item 5', start: '2013-04-20 12:00', end: '2013-04-20 20:30'},
-    {id: 6, content: 'item 6', start: '2013-04-20 12:00', end: '2013-04-20 20:30'}];
+    var preItems = [
+            {id: 1, content: 'item 1', start: '2018-10-19 12:00', end: '2018-10-19 12:30'},
+            {id: 2, content: 'item 1', start: '2018-10-19 12:00', end: '2018-10-19 12:31'}];
 
-  preItems.push({id: 7, content: 'item 7', start: '2013-04-22 12:00', end: '2013-04-22 20:30'})
+    // for (i = 0; i < timeslots.size(); i+= 2) {
+    //     preItems.push({id: i, content: 'busy', start: timeslots[i], end: timeslots[i+1]})
+    // }
 
-  //var users = "{{ users }}";
-  //console.log(users);
-  // Create a DataSet (allows two way data-binding)
-  var items = new vis.DataSet(preItems);
+    // var preItems = [
+    //     {id: 1, content: 'item 1', start: '2013-04-20 12:00', end: '2013-04-20 20:00'},
+    //     {id: 2, content: 'item 2', start: '2013-04-14 08:00', end: '2013-04-14 09:00'},
+    //     {id: 3, content: 'item 3', start: '2013-04-20 12:00', end: '2013-04-20 20:30'},
+    //     {id: 4, content: 'item 4', start: '2013-04-20 12:00', end: '2013-04-20 20:30'},
+    //     {id: 5, content: 'item 5', start: '2013-04-20 12:00', end: '2013-04-20 20:30'},
+    //     {id: 6, content: 'item 6', start: '2013-04-20 12:00', end: '2013-04-20 20:30'}];
 
-  // Configuration for the Timeline
-  var options = {};
+    //preItems.push({id: 7, content: 'item 7', start: '2013-04-22 12:00', end: '2013-04-22 20:30'})
 
-  // Create a Timeline
-  var timeline = new vis.Timeline(container, items, options);
+    //var users = "{{ users }}";
+    //console.log(users);
+    // Create a DataSet (allows two way data-binding)
+    var items = new vis.DataSet(preItems);
+
+    // Configuration for the Timeline
+    var options = {};
+
+    // Create a Timeline
+    var timeline = new vis.Timeline(container, items, options);
 </script>
 {% endblock %}
