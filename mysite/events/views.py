@@ -38,11 +38,12 @@ def event(request, eventID):
                     event.end_datetime)
         return HttpResponseRedirect(reverse("event", kwargs={'eventID': event.id}))
     else:
-        try:
-            event = Event.objects.get(id=eventID)
-        except:
-            return render(request, "no_puzzle.html")
+        #try:
+        event = Event.objects.get(id=eventID)
+        #except:
+        #        return render(request, "no_puzzle.html")
         return render(request, "event.html", {
+            "users": event.users,
             "event": event,
         })
 
