@@ -1,3 +1,5 @@
+import os
+
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
@@ -5,14 +7,33 @@ from twilio_sms import *
 
 from .forms import *
 
+from twilio import rest
+from twilio.twiml import messaging_response, voice_response
+
+# [START configuration]
+TWILIO_ACCOUNT_SID = os.environ['TWILIO_ACCOUNT_SID']
+TWILIO_AUTH_TOKEN = os.environ['TWILIO_AUTH_TOKEN']
+TWILIO_NUMBER = os.environ['TWILIO_NUMBER']
+# [END configuration]
+
+
 # Create your views here.
 
 def create(request):
     if request.method == "POST":
+        print ('created event')
+        client = rest.Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
+        rv = client.messages.create(
+            to="+19495454049",
+            from_=TWILIO_NUMBER,
+            body='Hello from Twilio!'
+        )
+        print(rv)
+
         form = EventForm(request.POST)
         if form.is_valid():
             event = form.save()
-            event.users.add(request.user) 
+            event.users.add(request.user)
             event.save()
             return HttpResponseRedirect(reverse("event", kwargs={'eventID': event.id}))
         else:
