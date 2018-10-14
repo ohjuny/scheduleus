@@ -12,7 +12,7 @@ def create(request):
         form = EventForm(request.POST)
         if form.is_valid():
             event = form.save()
-            event.users.add(request.user) 
+            event.users.add(request.user)
             event.save()
             return HttpResponseRedirect(reverse("event", kwargs={'eventID': event.id}))
         else:
@@ -31,7 +31,11 @@ def event(request, eventID):
         event = Event.objects.get(id = request.POST['event_id'])
         event.users.add(user)
         event.save()
-        send_msg(str(user.profile.phone_number), event.end_datetime)
+
+        send_msg(user.get_username(),
+                    str(user.profile.phone_number),
+                    event.name,
+                    event.end_datetime)
         return HttpResponseRedirect(reverse("event", kwargs={'eventID': event.id}))
     else:
         try:

@@ -25,7 +25,7 @@ SECRET_KEY = 'pcm2%yy_1*4^yp9azj7ro_#2fm2e=6t1$@sj!s44-h3s^8e$v('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'home',
     'accounts',
     'events',
+    'sms',
 ]
 
 MIDDLEWARE = [
