@@ -21,6 +21,9 @@
 <b>Users in event:</b><br>
 {% for user in event.users.all %}
 {{ user.username }}
+{% if user in event.pending.all %}
+(pending)
+{% endif %}
 <br>
 {% endfor %}<br>
 
@@ -62,7 +65,7 @@ Add users:
     {id: 6, content: 'item 6', start: '2013-04-20 12:00', end: '2013-04-20 20:30'}];
 
   preItems.push({id: 7, content: 'item 7', start: '2013-04-22 12:00', end: '2013-04-22 20:30'})
- 
+
   //var users = "{{ users }}";
   //console.log(users);
   // Create a DataSet (allows two way data-binding)

@@ -23,41 +23,49 @@ def main(): #maxtime):
     # Call the Calendar API
     now = datetime.datetime.utcnow().isoformat() + 'Z' # 'Z' indicates UTC time
     # get 50 events for now
-    events_result = service.events().list(calendarId='primary',# timeMax=maxtime, 
+    events_result = service.events().list(calendarId='primary',# timeMax=maxtime,
                                         timeMin=now,
                                         maxResults=4, singleEvents=True,
                                         orderBy='startTime').execute()
     events = events_result.get('items', [])
     listOfDateTimes=[]
+
     for event in events:
         start = event['start'].get('dateTime')
         end = event['end'].get('dateTime')
+        #
+        # print(event['summary'], "test", start, end)
+        #
+        # starttemp = str(start).split('T')
+        # endtemp = str(end).split('T')
+        #
+        # wholeDay = len(starttemp)
+        # startdate = starttemp[0]
+        # enddate = endtemp[0]
+        #
+        # starttime = ''
+        # starttimef = ''
+        # endtime = ''
+        # endtimef = ''
+        # if(wholeDay-1):
+        #     starttime = starttemp[1].split(':')
+        #     starttimef = starttime[0]+':'+starttime[1]
+        #
+        #     endtime = endtemp[1].split(':')
+        #     endtimef = endtime[0] +':'+endtime[1]
+        # else:
+        #     startdate = str(start)
+        #     enddate = str(end)
+        #
+        # listOfDateTimes.append(startdate + ' ' + starttimef)
+        # listOfDateTimes.append(enddate + ' ' + endtimef)
+    listOfDateTimes.append(start)
+    listOfDateTimes.append(end)
 
-        print(event['summary'], "test", start, end)
-
-        starttemp = str(start).split('T')
-        endtemp = str(end).split('T')
-
-        wholeDay = len(starttemp)
-        startdate = starttemp[0]
-        enddate = endtemp[0]
-
-        if(wholeDay-1):
-            starttime = starttemp[1].split(':')
-            starttimef = starttime[0]+':'+starttime[1]
-            
-            endtime = endtemp[1].split(':')
-            endtimef = endtime[0] +':'+endtime[1]
-        else:
-            startdate = str(start)
-            enddate = str(end)
-
-        listOfDateTimes.append(startdate + ' ' + starttimef)
-        listOfDateTimes.append(enddate + ' ' + endtimef) 
 
     if os.path.exists("token.json"):
         os.remove("token.json")
-        
+
     return listOfDateTimes
 
 if __name__ == '__main__':

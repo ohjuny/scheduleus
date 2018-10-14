@@ -11,8 +11,6 @@ class TimeSlot(models.Model):
 class Profile(models.Model):
     user = models.OneToOneField(User, related_name="profile", on_delete=models.CASCADE)
     phone_number = PhoneNumberField()
-    done_pending = models.BooleanField()
-    # phone_number = '19178608933'
 
     def __str__(self):
         return self.user.username
