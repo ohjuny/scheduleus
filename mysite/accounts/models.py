@@ -5,10 +5,10 @@ from phonenumber_field.modelfields import PhoneNumberField
 # Create your models here.
 class TimeSlot(models.Model):
     profile = models.ForeignKey('Profile', on_delete=models.CASCADE)
-    datetime = models.DateTimeField()
+    datetime = models.CharField(max_length=16)
 
     def __str__(self):
-        return str(self.datetime)
+        return self.datetime
 
 # Extending Django's default User model by having a OneToOneField with User table.
 class Profile(models.Model):
