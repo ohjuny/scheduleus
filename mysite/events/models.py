@@ -8,8 +8,8 @@ class FreeTime(models.Model):
 
 class Event(models.Model):
     name = models.CharField(max_length=50, default="default_name")
-    users = models.ManyToManyField(User, blank=True)
     end_datetime = models.DateTimeField()
+    users = models.ManyToManyField(User, blank=True)
     free_times = models.ManyToManyField(FreeTime)
 
     def __str__(self):

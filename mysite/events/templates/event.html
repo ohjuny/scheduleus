@@ -8,5 +8,35 @@
 EVENT PAGE
 <br><br>
 Name: {{ event.name }}<br>
-End Date and Time: {{ event.end_datetime }}
+End Date and Time: {{ event.end_datetime }}<br><br>
+Add users:
+<input type="text" id="search" placeholder="Search users">
+<br><div id="search_results"></div>
+
+<br>
+<b>Users in event:</b><br>
+{% for user in event.users.all %}
+{{ user.username }}
+{% endfor %}
+
+{% endblock %}
+
+{% block javascript %}
+<script>
+    $("#search").keyup(function () {
+        var search_text = $(this).val();
+
+        $.ajax({
+            type: "GET",
+            url: '{% url "search_users" %}',
+            data: {
+                'eventID': "{{ event.id }}",
+                'search_text': search_text
+            },
+            success: function (data) {
+                $('#search_results').html(data);
+            }
+        });
+    });
+</script>
 {% endblock %}
