@@ -49,10 +49,14 @@ def event(request, eventID):
         for user in event.verified.all():
             for timeslot in TimeSlot.objects.filter(profile=user.profile):
                 timeslots.append(timeslot)
-                
+        
+        timeslots_final=''
+        for timeslot in timeslots:
+            timeslots_final+= ('@' +timeslot.datetime)
+
         return render(request, "event.html", {
             "event": event,
-            "timeslots": timeslots,
+            "timeslots": timeslots_final,
         })
 
 def events(request):
