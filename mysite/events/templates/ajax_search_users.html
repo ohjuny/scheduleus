@@ -3,8 +3,14 @@
 {% elif users.count > 0 %}
     <b>Users Found:</b><br>
     {% for user in users %}
-        {{ user.username }}
-        <input type="submit" id="user_{{user.id}}" value="Add">
+        <form method="post">
+            {% csrf_token %}
+            {{ user.username }}
+            <input type="hidden" name="user_id" value="{{user.id}}" />
+            <input type="hidden" name="event_id" value="{{eventID}}" />
+            <input type="submit" value="Add">
+        </form>
+        <br>
     {% endfor %}
 {% else %}
     No users match the search
