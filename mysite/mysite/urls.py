@@ -38,4 +38,6 @@ urlpatterns = [
     url(r'^create/$', events_views.create, name="create"),
     url(r'^events/$', events_views.events, name="events"),
     url(r'^event/(?P<eventID>.+)/$', events_views.event, name="event"),
+
+    url(r'^ajax/search_users/$', events_views.search_users, name='search_users'),
 ]

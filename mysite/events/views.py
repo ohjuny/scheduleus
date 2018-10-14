@@ -1,20 +1,20 @@
 from django.shortcuts import render
+from django.http import HttpResponse, HttpResponseRedirect
+from django.urls import reverse
+
 from .forms import *
 
 # Create your views here.
+
 def create(request):
     if request.method == "POST":
         form = EventForm(request.POST)
-        print('HELLO HELLO HELLO')
-        print(form)
-        print(form.is_valid())
-        print(form.errors)
         if form.is_valid():
-            print('ASDFGHJKJL')
             event = form.save()
-            return render(request, "home.html")
+            event.users.add(request.user)
+            # return render(request, "home.html")
+            return HttpResponseRedirect(reverse("event", kwargs={'eventID': event.id}))
         else:
-            print('QWERTY')
             return render(request, "create.html", {
                 'form': form,
             })
@@ -37,3 +37,17 @@ def events(request):
     return render(request, "events.html", {
         "events": Event.objects.all(),
     })
+
+def search_users(request):
+    if request.is_ajax():
+        search_text = request.GET.get('search_text')
+        eventID = request.GET.get('eventID')
+        # event = Event.objects.filter(eventID=eventID)
+        # users = User.objects.filter(username__icontains=search_text),
+        # for user in users:
+        #     if user in event.users:
+        #         User.objects.exclude(userID=user.id)
+        return render(request, "ajax_search_users.html", {
+            'users': users,
+            'search_len': len(search_text),
+        })

@@ -1,0 +1,11 @@
+{% if search_len < 3 %}
+
+{% elif users.count > 0 %}
+    <b>Users Found:</b><br>
+    {% for user in users %}
+        {{ user.username }}
+        <input type="submit" id="user_{{user.id}}" value="Add">
+    {% endfor %}
+{% else %}
+    No users match the search
+{% endif %}
