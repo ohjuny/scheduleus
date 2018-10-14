@@ -9,7 +9,7 @@ import os
 # If modifying these scopes, delete the file token.json.
 SCOPES = 'https://www.googleapis.com/auth/calendar'
 
-def main(datetime maxtime):
+def main(maxtime):
     """Gets information from Google Calendar and sets database freetime information
     """
     store = file.Storage('token.json')
