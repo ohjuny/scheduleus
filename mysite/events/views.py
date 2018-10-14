@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
-import ../../twilio as twilio
+from twilio_sms import *
 
 from .forms import *
 
@@ -12,16 +12,13 @@ def create(request):
         form = EventForm(request.POST)
         if form.is_valid():
             event = form.save()
-            event.users.add(request.user)
+            event.users.add(request.user) 
             event.save()
             return HttpResponseRedirect(reverse("event", kwargs={'eventID': event.id}))
         else:
             return render(request, "create.html", {
                 'form': form,
             })
-
-        #loop through users
-        twilio.send_msg() #string number, datetime lasttime
     else:
         form = EventForm()
         return render(request, "create.html", {
@@ -30,7 +27,12 @@ def create(request):
 
 def event(request, eventID):
     if request.method == "POST":
-        print("ITS A POST REQUEST")
+        user = User.objects.get(id = request.POST['user_id'])
+        event = Event.objects.get(id = request.POST['event_id'])
+        event.users.add(user)
+        event.save()
+        send_msg(user.profile.phone_number, event.end_datetime)
+        return HttpResponseRedirect(reverse("event", kwargs={'eventID': event.id}))
     else:
         try:
             event = Event.objects.get(id=eventID)
@@ -42,7 +44,7 @@ def event(request, eventID):
 
 def events(request):
     return render(request, "events.html", {
-        "events": Event.objects.all(),
+        "events": Event.objects.filter(users__username=request.user.username),
     })
 
 def search_users(request):
@@ -52,8 +54,9 @@ def search_users(request):
         event = Event.objects.get(id=eventID)
         users = User.objects.filter(username__icontains=search_text)
         for user in event.users.all():
-            users = users.exclude(id=15)
+            users = users.exclude(id=user.id)
         return render(request, "ajax_search_users.html", {
             'users': users,
             'search_len': len(search_text),
+            'eventID': eventID,
         })

@@ -11,7 +11,7 @@ class Event(models.Model):
     end_datetime = models.DateTimeField()
     users = models.ManyToManyField(User, blank=True)
     free_times = models.ManyToManyField(FreeTime)
-    count = models.IntegerField()
+    count = models.IntegerField(default=0)
 
     def __str__(self):
         return self.name

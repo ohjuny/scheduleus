@@ -17,6 +17,7 @@ Add users:
 <b>Users in event:</b><br>
 {% for user in event.users.all %}
 {{ user.username }}
+<br>
 {% endfor %}
 
 <br><br>
@@ -40,23 +41,6 @@ Add users:
                 $('#search_results').html(data);
             }
         });
-    });
-
-    $("#add_user").click(function () {
-        console.log('button clicked');
-        // var search_text = $(this).val();
-
-        // $.ajax({
-        //     type: "GET",
-        //     url: '{% url "search_users" %}',
-        //     data: {
-        //         'eventID': "{{ event.id }}",
-        //         'search_text': search_text
-        //     },
-        //     success: function (data) {
-        //         $('#search_results').html(data);
-        //     }
-        // });
     });
 </script>
 {% endblock %}
