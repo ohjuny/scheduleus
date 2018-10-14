@@ -18,7 +18,7 @@ def send_msg(phone_number, maxtime): #string, datetime
             to= phone_number,
             # to = '19178608933',
             from_="+15162611863",
-            body=str(qs.main(maxtime)))
+            body=str(qs.main()))
             # body = 'https://www.googleapis.com/auth/calendar')
 
         print(message.sid)
