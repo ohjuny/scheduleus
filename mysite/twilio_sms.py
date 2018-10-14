@@ -7,9 +7,9 @@ from twilio.twiml import messaging_response, voice_response
 import quickstart as qs
 
 # [START configuration]
-TWILIO_ACCOUNT_SID = os.environ['TWILIO_ACCOUNT_SID']
-TWILIO_AUTH_TOKEN = os.environ['TWILIO_AUTH_TOKEN']
-TWILIO_NUMBER = os.environ['TWILIO_NUMBER']
+TWILIO_ACCOUNT_SID = "AC5b635c588d37e4b52b7a2dc80206a985"
+TWILIO_AUTH_TOKEN = "31f8afc06b5d534894c6d03b5862da6b"
+TWILIO_NUMBER = "+18577021901"
 # [END configuration]
 
 # from mysite import mysite as ms

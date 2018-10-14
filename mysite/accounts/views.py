@@ -6,6 +6,8 @@ from django.contrib.auth.models import User
 from .forms import *
 from .models import *
 
+import quickstart
+
 # Create your views here.
 def signup(request):
     if request.method == "POST":
@@ -14,6 +16,10 @@ def signup(request):
             user, Profile = form.save()
             user.save()
             user.profile.save()
+
+            arr = quickstart.main()
+            for obj in arr:
+                newTimeSlot = TimeSlot(id=None, profile=user.profile, datetime=obj)
 
             login(request, user)
             return render(request, "home.html")

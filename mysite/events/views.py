@@ -13,6 +13,7 @@ def create(request):
         if form.is_valid():
             event = form.save()
             event.users.add(request.user)
+            event.verified.add(request.user)
             event.save()
             return HttpResponseRedirect(reverse("event", kwargs={'eventID': event.id}))
         else:
@@ -30,6 +31,7 @@ def event(request, eventID):
         user = User.objects.get(id = request.POST['user_id'])
         event = Event.objects.get(id = request.POST['event_id'])
         event.users.add(user)
+        event.pending.add(user)
         event.save()
 
         send_msg(request.user.username,
@@ -45,7 +47,7 @@ def event(request, eventID):
         try:
             event = Event.objects.get(id=eventID)
         except:
-            return render(request, "no_puzzle.html")
+            return render(request, "no_event.html")
         return render(request, "event.html", {
             "event": event,
         })

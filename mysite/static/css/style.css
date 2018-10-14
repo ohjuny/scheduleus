@@ -20,6 +20,10 @@
     /* text-align: center; */
 }
 
+#foot {
+    color: #c5c5c5;
+}
+
 #name a:link {
     color: #2d7cf6;
 }
