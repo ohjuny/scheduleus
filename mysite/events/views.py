@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
+import ../../twilio as twilio
 
 from .forms import *
 
@@ -18,6 +19,9 @@ def create(request):
             return render(request, "create.html", {
                 'form': form,
             })
+
+        #loop through users
+        twilio.send_msg() #string number, datetime lasttime
     else:
         form = EventForm()
         return render(request, "create.html", {

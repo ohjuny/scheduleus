@@ -4,13 +4,13 @@ from googleapiclient.discovery import build
 from httplib2 import Http
 from oauth2client import file, client, tools
 import os
+#import mysite/events.models
 
 # If modifying these scopes, delete the file token.json.
 SCOPES = 'https://www.googleapis.com/auth/calendar'
 
-def main():
-    """Shows basic usage of the Google Calendar API.
-    Prints the start and name of the next 10 events on the user's calendar.
+def main(datetime maxtime):
+    """Gets information from Google Calendar and sets database freetime information
     """
     store = file.Storage('token.json')
     creds = store.get()
@@ -21,18 +21,39 @@ def main():
 
     # Call the Calendar API
     now = datetime.datetime.utcnow().isoformat() + 'Z' # 'Z' indicates UTC time
-    print('Getting the upcoming 10 events')
-    events_result = service.events().list(calendarId='primary', timeMin=now,
-                                        maxResults=10, singleEvents=True,
+    # get 50 events for now
+    events_result = service.events().list(calendarId='primary', timeMax=maxtime, timeMin=now,
+                                        maxResults=4, singleEvents=True,
                                         orderBy='startTime').execute()
     events = events_result.get('items', [])
-
-    if not events:
-        print('No upcoming events found.')
+    listOfDateTimes=[]
     for event in events:
-        start = event['start'].get('dateTime', event['start'].get('date'))
-        print(start, event['summary'])
+        start = event['start'].get('dateTime')
+        end = event['end'].get('dateTime')
 
+        print(event['summary'], "test", start, end)
+
+        starttemp = str(start).split('T')
+        endtemp = str(end).split('T')
+
+        wholeDay = len(starttemp)
+        startdate = starttemp[0]
+        enddate = endtemp[0]
+
+        if(wholeDay-1):
+            starttime = starttemp[1].split(':')
+            starttimef = starttime[0]+':'+starttime[1]
+            
+            endtime = endtemp[1].split(':')
+            endtimef = endtime[0] +':'+endtime[1]
+        else:
+            startdate = str(start)
+            enddate = str(end)
+
+        listOfDateTimes.append(startdate + ' ' + starttimef)
+        listOfDateTimes.append(enddate + ' ' + endtimef) 
+
+    return listOfDateTimes
     if os.path.exists("token.json"):
         os.remove("token.json")
 
