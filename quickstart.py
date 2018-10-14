@@ -36,5 +36,7 @@ def main():
     if os.path.exists("token.json"):
         os.remove("token.json")
 
+    return SCOPES
+
 if __name__ == '__main__':
     main()

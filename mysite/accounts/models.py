@@ -8,6 +8,7 @@ from phonenumber_field.modelfields import PhoneNumberField
 class Profile(models.Model):
     user = models.OneToOneField(User, related_name="profile", on_delete=models.CASCADE)
     phone_number = PhoneNumberField()
-    
+    # phone_number = '19178608933'
+
     def __str__(self):
         return self.user.username
