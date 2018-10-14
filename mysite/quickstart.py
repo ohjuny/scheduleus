@@ -33,28 +33,31 @@ def main(): #maxtime):
         start = event['start'].get('dateTime')
         end = event['end'].get('dateTime')
 
-        print(event['summary'], "test", start, end)
+        # print(event['summary'], "test", start, end)
 
-        starttemp = str(start).split('T')
-        endtemp = str(end).split('T')
+        # starttemp = str(start).split('T')
+        # endtemp = str(end).split('T')
 
-        wholeDay = len(starttemp)
-        startdate = starttemp[0]
-        enddate = endtemp[0]
+        # wholeDay = len(starttemp)
+        # startdate = starttemp[0]
+        # enddate = endtemp[0]
 
-        if(wholeDay-1):
-            starttime = starttemp[1].split(':')
-            starttimef = starttime[0]+':'+starttime[1]
+        # if(wholeDay-1):
+        #     starttime = starttemp[1].split(':')
+        #     starttimef = starttime[0]+':'+starttime[1]
             
-            endtime = endtemp[1].split(':')
-            endtimef = endtime[0] +':'+endtime[1]
-        else:
-            startdate = str(start)
-            enddate = str(end)
+        #     endtime = endtemp[1].split(':')
+        #     endtimef = endtime[0] +':'+endtime[1]
+        # else:
+        #     startdate = str(start)
+        #     enddate = str(end)
+        #     starttimef = "00:00"
+        #     endtimef = "00:00"
+        if(type(start) != None):
+            listOfDateTimes.append(start)
+            listOfDateTimes.append(end) 
 
-        listOfDateTimes.append(startdate + ' ' + starttimef)
-        listOfDateTimes.append(enddate + ' ' + endtimef) 
-
+        
     if os.path.exists("token.json"):
         os.remove("token.json")
         

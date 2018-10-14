@@ -6,6 +6,8 @@ from django.contrib.auth.models import User
 from .forms import *
 from .models import *
 
+import dateutil.parser
+
 import quickstart
 
 # Create your views here.
@@ -18,8 +20,9 @@ def signup(request):
             user.profile.save()
 
             arr = quickstart.main()
-            for obj in arr:
+            for obj in parse(arr):
                 newTimeSlot = TimeSlot(id=None, profile=user.profile, datetime=obj)
+                newTimeSlot.save()
 
             login(request, user)
             return render(request, "home.html")

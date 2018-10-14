@@ -61,8 +61,14 @@ Add users:
 
   preItems.push({id: 7, content: 'item 7', start: '2013-04-22 12:00', end: '2013-04-22 20:30'})
  
-  //var users = "{{ users }}";
-  //console.log(users);
+  var users = "{{ users }}";
+  var timeslots = "{{timeslots}}";
+  console.log(timeslots);
+
+  for(i=0; i < timeslots.size(); i+=2){
+      preItems.push({id: i, content: 'busy', start: timeslots[i], end: timeslots[i+1]});
+  }
+
   // Create a DataSet (allows two way data-binding)
   var items = new vis.DataSet(preItems);
 

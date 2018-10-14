@@ -39,12 +39,17 @@ def event(request, eventID):
         return HttpResponseRedirect(reverse("event", kwargs={'eventID': event.id}))
     else:
         #try:
+        timeslots = []
         event = Event.objects.get(id=eventID)
+        for user in event.verified.all():
+            for timeslot in TimeSlot.objects.filter(profile=user.profile):
+                timeslots.append(timeslot)
         #except:
         #        return render(request, "no_puzzle.html")
         return render(request, "event.html", {
             "users": event.users,
             "event": event,
+            "timeslots": timeslots
         })
 
 def events(request):
