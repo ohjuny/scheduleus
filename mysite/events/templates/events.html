@@ -5,7 +5,8 @@
 {% endblock %}
 
 {% block content %}
+<h2>Your Events</h2><br>
 {% for event in events %}
-    Name: <a href="{% url 'event' event.id %}">{{ event.name }}</a><br>
+    <a href="{% url 'event' event.id %}">{{ event.name }}</a><br>
 {% endfor %}
 {% endblock %}

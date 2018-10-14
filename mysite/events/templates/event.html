@@ -15,22 +15,19 @@
 {% endblock %}
 
 {% block content %}
-EVENT PAGE
-<br><br>
-Name: {{ event.name }}<br>
-End Date and Time: {{ event.end_datetime }}<br><br>
-Add users:
-<input type="text" id="search" placeholder="Search users">
-<br><div id="search_results"></div>
+<h2>Name: {{ event.name }}</h2>
+<div class="subtitle">End Date & Time: {{ event.end_datetime }}</div><br>
 
-<br>
 <b>Users in event:</b><br>
 {% for user in event.users.all %}
 {{ user.username }}
 <br>
-{% endfor %}
+{% endfor %}<br>
 
-<br><br>
+Add users:
+<input type="text" id="search" placeholder="Search users">
+<br><div id="search_results"></div>
+
 <!-- <input type="button" id="asdf" value="Add"> -->
 <div id="visualization"></div>
 {% endblock %}

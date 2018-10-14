@@ -15,17 +15,41 @@
     /* background-color: #ff0000; */
 }
 
-#home {
+#name {
     font-size: 30px;
     /* text-align: center; */
 }
 
-a:link {
-    color: #cc0000;
+#name a:link {
+    color: #2d7cf6;
 }
-a:visited {
-    color: #999999;
+#name a:visited {
+    color: #2d7cf6;
 }
-a:hover {
-    color: #ff3300;
+#name a:hover {
+    color: #2d7cf6;
+}
+
+#main a:link {
+    color: #555555;
+}
+#main a:visited {
+    color: #555555;
+}
+#main a:hover {
+    color: #555555;
+}
+
+#foot a:link {
+    color: #c5c5c5;
+}
+#foot a:visited {
+    color: #c5c5c5;
+}
+#foot a:hover {
+    color: #c5c5c5;
+}
+
+.subtitle {
+    color: #c5c5c5;
 }

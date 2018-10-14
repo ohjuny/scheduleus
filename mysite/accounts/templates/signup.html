@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block content %}
+<h2>Sign Up</h2><br>
 <form method="post">
     {% csrf_token %}
     <div class="form-group">
@@ -23,6 +24,7 @@
         <label>Re-enter Password</label>
         {{ form.password2 }} {{ form.password2.errors }}
     </div>
+    <br>
     <div>
         <button type="submit" class="btn btn-primary">Create an account</button>
     </div>

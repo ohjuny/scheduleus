@@ -20,13 +20,6 @@
     /* text-align: center; */
 }
 
-/* #main {
-}
-
-#foot {
-} */
-
-
 #name a:link {
     color: #2d7cf6;
 }
@@ -55,4 +48,8 @@
 }
 #foot a:hover {
     color: #c5c5c5;
+}
+
+.subtitle {
+    color: #888888;
 }
