@@ -9,7 +9,9 @@ class FreeTime(models.Model):
 class Event(models.Model):
     name = models.CharField(max_length=50, default="default_name")
     end_datetime = models.DateTimeField()
-    users = models.ManyToManyField(User, blank=True)
+    users = models.ManyToManyField(User, related_name='users', blank=True)
+    pending = models.ManyToManyField(User, related_name='pending', blank=True)
+    verified = models.ManyToManyField(User, related_name='verified', blank=True)
     free_times = models.ManyToManyField(FreeTime)
     count = models.IntegerField(default=0)
 

@@ -37,6 +37,7 @@
                     <hr>
                 </div>
                 <div id="foot">
+                    {{ user.username }}<br>
                     <a href="{% url 'logout' %}">log out</a><br>
                 </div>
                 {% else %}
